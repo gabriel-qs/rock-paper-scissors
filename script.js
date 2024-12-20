@@ -1,37 +1,29 @@
 //Arquivo JS do jogo da velha
 
-//1. Declarar os scores
+//Declarar os scores
 var humanScore = 0;
 var computerScore = 0;
 
-//2. Sortear a escolha do computador
-let computerChoice = getComputerChoice();
-//console.log(`Escolha do computador: ${computerChoice}`);
-
-//3. Pegar a escolha do usuário
-let humanChoice = getHumanChoice();
-
-//5 e 6. Mostrar quem venceu a rodada e incrementando score
 let showResult = function(result, hum, comp){
 	switch (result){
 		case 1:
-			console.log( `Voce venceu! ${hum} vence ${comp}`);
+			console.log( `Voce venceu a rodada! ${hum} vence ${comp}`);
 			humanScore++;
 		break;
 		case 2:
-			console.log( `Voce perdeu! ${comp} vence ${hum}`);
+			console.log( `Voce perdeu a rodada! ${comp} vence ${hum}`);
 			computerScore++;
 		break;
 		case 3:
-			console.log( `Empate!`);
+			console.log( `Essa rodada foi um empate!`);
 			humanScore++;
 			computerScore++;
 		break;
 	}
 };
 
-//4. Jogar rodada
-playRound(humanChoice, computerChoice, showResult);
+playGame(playRound, getComputerChoice, getHumanChoice, showResult);
+
 
 function getComputerChoice() {
 	let drawNumber = Math.floor(Math.random() * (4 - 1) + 1); //Gera um num aleatorio entre 1 a 3
@@ -53,7 +45,7 @@ function getHumanChoice(){
 	return choice.toLowerCase();
 }
 
-function playRound(human, computer, show){
+function playRound(computer, human, show){
 	if (human === "papel" && computer === "pedra"){
 		show(1, human, computer);
 	} else if (human === "tesoura" && computer === "papel") {
@@ -66,3 +58,28 @@ function playRound(human, computer, show){
 		show(2, human, computer);
 	}
 }
+
+function playGame(round, computerChoice, humanChoice, showR){
+	
+	for(let i = 0; i < 5; i++){
+		round(computerChoice(), 
+			  humanChoice(), 
+			  showR);
+	}
+	
+	if(humanScore > computerScore){
+		console.log("Você é o vencedor!");	
+	} else if(humanScore == computerScore) {
+		console.log("O jogo ficou empado!");
+	} else {
+		console.log("Game over!");
+	}
+	
+	console.log(`Placar final: `);
+	console.log(`Humano: ${humanScore}`);
+	console.log(`Computador: ${computerScore}`);
+	
+}
+
+
+
