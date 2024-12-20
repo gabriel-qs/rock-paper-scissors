@@ -4,27 +4,9 @@
 var humanScore = 0;
 var computerScore = 0;
 
-let showResult = function(result, hum, comp){
-	switch (result){
-		case 1:
-			console.log( `Voce venceu a rodada! ${hum} vence ${comp}`);
-			humanScore++;
-		break;
-		case 2:
-			console.log( `Voce perdeu a rodada! ${comp} vence ${hum}`);
-			computerScore++;
-		break;
-		case 3:
-			console.log( `Essa rodada foi um empate!`);
-			humanScore++;
-			computerScore++;
-		break;
-	}
-};
-
 playGame(playRound, getComputerChoice, getHumanChoice, showResult);
 
-
+//PEGAR A ESCOLHA DO COMPUTADOR e GUARDAR a escolha do computador
 function getComputerChoice() {
 	let drawNumber = Math.floor(Math.random() * (4 - 1) + 1); //Gera um num aleatorio entre 1 a 3
 	
@@ -40,11 +22,13 @@ function getComputerChoice() {
 	
 } 
 
+//PEGAR a escolha do usuario e Guardar a escolha do usuario
 function getHumanChoice(){
 	let choice = prompt("Digite a sua escolha - pedra, papel ou tesoura: ");
 	return choice.toLowerCase();
 }
 
+//JOGAR a rodada
 function playRound(computer, human, show){
 	if (human === "papel" && computer === "pedra"){
 		show(1, human, computer);
@@ -59,6 +43,26 @@ function playRound(computer, human, show){
 	}
 }
 
+//Mostrar resultado da rodada
+function showResult(result, hum, comp){
+	switch (result){
+		case 1:
+			console.log( `Voce venceu a rodada! ${hum} vence ${comp}`);
+			humanScore++;
+		break;
+		case 2:
+			console.log( `Voce perdeu a rodada! ${comp} vence ${hum}`);
+			computerScore++;
+		break;
+		case 3:
+			console.log( `Essa rodada foi um empate!`);
+			humanScore++;
+			computerScore++;
+		break;
+	}
+}
+
+//Jogar o jogo
 function playGame(round, computerChoice, humanChoice, showR){
 	
 	for(let i = 0; i < 5; i++){
