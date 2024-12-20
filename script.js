@@ -11,17 +11,21 @@ let computerChoice = getComputerChoice();
 //3. Pegar a escolha do usuário
 let humanChoice = getHumanChoice();
 
-//5. Mostrar quem venceu a rodada
+//5 e 6. Mostrar quem venceu a rodada e incrementando score
 let showResult = function(result, hum, comp){
 	switch (result){
 		case 1:
 			console.log( `Voce venceu! ${hum} vence ${comp}`);
+			humanScore++;
 		break;
 		case 2:
 			console.log( `Voce perdeu! ${comp} vence ${hum}`);
+			computerScore++;
 		break;
 		case 3:
 			console.log( `Empate!`);
+			humanScore++;
+			computerScore++;
 		break;
 	}
 };
