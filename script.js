@@ -3,7 +3,8 @@ var humanScore = 0;
 var computerScore = 0;
 
 let computerChoice = getComputerChoice();
-console.log(computerChoice);
+
+let humanChoice = getHumanChoice();
 
 function getComputerChoice() {
 	let drawNumber = Math.floor(Math.random() * (4 - 1) + 1); //Gera um num aleatorio entre 1 a 3
@@ -19,3 +20,8 @@ function getComputerChoice() {
 	}
 	
 } 
+
+function getHumanChoice(){
+	let choice = prompt("Digite a sua escolha - pedra, papel ou tesoura: ");
+	return choice.toLowerCase();
+}
